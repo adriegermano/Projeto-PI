@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (img) {
             slide.style.setProperty(
                 "--slide-background",
-                url("${img.getAttribute("src")}") center / cover no-repeat
+                url("${img.getAttribute("src")}")center / cover no-repeat
             );
         }
     });
