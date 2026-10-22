@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Instrutor - noCauTe</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dashboard-body">
+
+    <!-- Menu Lateral -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2 class="logo">noCauTe</h2>
+            <p>Painel do Instrutor<br>CT Fabiano Mineiro</p>
+        </div>
+        <nav class="sidebar-nav">
+            <button class="nav-item active" data-target="view-dashboard">Dashboard</button>
+            <button class="nav-item" data-target="view-alunos">Alunos</button>
+            <button class="nav-item" data-target="view-aulas">Aulas de hoje</button>
+            <button class="nav-item" data-target="view-turmas">Turmas</button>
+            <button class="nav-item" data-target="view-presencas">Presenças</button>
+            <button class="nav-item" data-target="view-relatorios">Relatórios</button>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="login.html" class="nav-item btn-logout">Sair</a>
+        </div>
+    </aside>
+
+    <!-- Conteúdo Principal -->
+    <main class="dashboard-main">
+        
+        <!-- VISÃO: DASHBOARD -->
+        <section id="view-dashboard" class="view-section active">
+            <header class="view-header">
+                <h1>Olá, <br><span>Fabiano Mineiro</span></h1>
+            </header>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <p class="stat-title">AULAS HOJE</p>
+                    <h3>3</h3>
+                    <p class="stat-subtitle">Quarta-feira</p>
+                </div>
+                <div class="stat-card">
+                    <p class="stat-title">ALUNOS ESPERADOS</p>
+                    <h3>42</h3>
+                    <p class="stat-subtitle">Total do dia</p>
+                </div>
+                <div class="stat-card">
+                    <p class="stat-title">CHAMADAS PENDENTES</p>
+                    <h3 style="color: #f87171;">1</h3>
+                    <p class="stat-subtitle">Boxe Manhã</p>
+                </div>
+            </div>
+
+            <div class="dashboard-panels">
+                <div class="panel">
+                    <h3>Sua agenda de hoje</h3>
+                    <ul class="grade-list">
+                        <li class="grade-item"><strong>07:00</strong> Boxe Manhã (16 alunos) <button class="btn btn-outline btn-go-chamada" style="padding: 0.2rem 0.5rem; font-size: 0.8rem; float: right;">Fazer Chamada</button></li>
+                        <li class="grade-item"><strong>18:00</strong> Kickboxing Avançado (14 alunos)</li>
+                        <li class="grade-item"><strong>19:30</strong> Muay Thai Iniciante (12 alunos)</li>
+                    </ul>
+                </div>
+                <div class="panel">
+                    <h3>Avisos Rápidos</h3>
+                    <div class="empty-state">
+                        <p>Nenhum aviso da administração para hoje.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VISÃO: ALUNOS -->
+        <section id="view-alunos" class="view-section">
+            <header class="view-header">
+                <h1>Gerenciamento de Alunos</h1>
+                <p>Lista geral de alunos matriculados.</p>
+            </header>
+            
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr><th>NOME</th><th>PLANO</th><th>STATUS</th><th>AÇÕES</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Ana Beatriz Lima</td><td>Competidor</td><td class="status-presente">Ativo</td><td><button class="btn btn-outline" style="padding: 0.3rem;">Ver Perfil</button></td></tr>
+                        <tr><td>Carlos Eduardo Souza</td><td>Iniciante</td><td class="status-presente">Ativo</td><td><button class="btn btn-outline" style="padding: 0.3rem;">Ver Perfil</button></td></tr>
+                        <tr><td>Mariana Costa</td><td>Personal</td><td class="status-falta">Inativo</td><td><button class="btn btn-outline" style="padding: 0.3rem;">Ver Perfil</button></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- VISÃO: AULAS DE HOJE -->
+        <section id="view-aulas" class="view-section">
+            <header class="view-header">
+                <h1>Aulas</h1>
+                <p>Quarta-Feira, 09 De Setembro</p>
+            </header>
+
+            <div class="classes-list">
+                <div class="class-card">
+                    <div class="class-time">07:00<span>60 min</span></div>
+                    <div class="class-info">
+                        <h4>Boxe Manhã</h4>
+                        <p class="class-details">📍 Ringue | 16/20 vagas preenchidas</p>
+                    </div>
+                    <button class="btn btn-primary btn-go-chamada">Realizar Chamada</button>
+                </div>
+                <div class="class-card">
+                    <div class="class-time">18:00<span>90 min</span></div>
+                    <div class="class-info">
+                        <h4>Kickboxing Avançado</h4>
+                        <p class="class-details">📍 Ringue | 14/15 vagas preenchidas</p>
+                    </div>
+                    <button class="btn btn-outline">Ver Lista</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- VISÃO: TURMAS -->
+        <section id="view-turmas" class="view-section">
+            <header class="view-header">
+                <h1>Minhas Turmas</h1>
+                <p>Gestão de turmas fixas.</p>
+            </header>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h3>Boxe Manhã</h3>
+                    <p>Seg, Qua, Sex - 07:00</p>
+                    <ul><li>20 Vagas totais</li><li>Ringue principal</li></ul>
+                </div>
+                <div class="plan-card">
+                    <h3>Kickboxing Avançado</h3>
+                    <p>Ter, Qui - 18:00</p>
+                    <ul><li>15 Vagas totais</li><li>Ringue principal</li></ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- VISÃO: PRESENÇAS (CHAMADA) -->
+        <section id="view-presencas" class="view-section">
+            <header class="view-header">
+                <h1>Chamada</h1>
+                <p>Quarta-feira, 09 de setembro - <strong>Boxe Manhã (07:00)</strong></p>
+            </header>
+
+            <div class="table-responsive">
+                <table class="data-table" id="tabela-chamada">
+                    <thead>
+                        <tr><th>ALUNO</th><th>STATUS DE PRESENÇA</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ana Beatriz Lima</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-outline btn-chamada" data-status="presente">✔ Presente</button>
+                                    <button class="btn btn-outline btn-chamada" data-status="falta">X Falta</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Carlos Eduardo Souza</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-outline btn-chamada" data-status="presente">✔ Presente</button>
+                                    <button class="btn btn-outline btn-chamada" data-status="falta">X Falta</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <button class="btn btn-primary" id="btn-salvar-chamada">Salvar Chamada</button>
+        </section>
+
+        <!-- VISÃO: RELATÓRIOS -->
+        <section id="view-relatorios" class="view-section">
+            <header class="view-header">
+                <h1>Relatórios</h1>
+                <p>Visão geral de desempenho.</p>
+            </header>
+            <div class="dashboard-panels">
+                <div class="panel">
+                    <h3>Taxa de Presença (Mês)</h3>
+                    <h2 style="font-size: 3rem; color: var(--primary-color);">87%</h2>
+                    <p>Média de presença nas suas turmas.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="js/instrutor.js"></script>
+</body>
+</html>
