@@ -31,9 +31,9 @@ ul { list-style: none; }
     margin-left: 10px
 }
 
-/* Typography & Utils */
+/* Tipografia e Utilitários */
 h1, h2, h3 { font-weight: 700; }
-span { color: var(--primary-color); }
+span { color: var(--text-light); }
 .bg-dark { background-color: var(--bg-darker); }
 .section { padding: 4rem 0; }
 .section-header { text-align: center; margin-bottom: 3rem; }
@@ -326,13 +326,9 @@ span { color: var(--primary-color); }
     }
 }
 
-/* Grid e Cards */
-.cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-.card { background: var(--bg-card); padding: 2rem; border-radius: 8px; border-bottom: 3px solid transparent; transition: border-color 0.3s; }
-.card:hover { border-bottom-color: var(--primary-color); }
-.card a { color: var(--primary-color); font-size: 0.9rem; font-weight: bold; }
 
-/*QUEM SOMOS*/
+
+
 /*QUEM SOMOS*/
 #institucional {
     background-color: #FFFFFF;
@@ -341,7 +337,6 @@ span { color: var(--primary-color); }
 
 /* Limita a largura máxima do conteúdo para não espalhar em telas ultra-wide */
 #institucional .container {
-
     padding: 0 50px;
 }
 
@@ -370,11 +365,10 @@ span { color: var(--primary-color); }
     object-fit: cover;
     border-radius: 8px;
     box-shadow: -30px 30px var(--primary-color); /* Sombra leve para destacar a imagem */
-    margin-left: 80px;
+    margin-left: max(20px, 10%);
 }
 
 /* Estilização do bloco da direita (Missão, Visão, Valores) */
-
 .mvv{
     padding-left: 0;
     margin: 0;
@@ -412,10 +406,55 @@ span { color: var(--primary-color); }
     margin-top: 100px;
 }
 
-/*Modalidades*/
+
+/*MODALIDADES*/
+/* 1. CONFIGURAÇÃO DA SEÇÃO E DA IMAGEM DE FUNDO */
+#modalidades {
+    position: relative; /* Cria uma referência de espaço */
+    width: 100%;
+    min-height: 100vh;
+    padding: 4rem 0;
+    overflow: hidden;
+}
+
+.img-modalidades {
+    position: absolute; /* Tira a imagem do fluxo e joga ela pro fundo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* Faz a imagem cobrir a tela inteira sem distorcer */
+    z-index: 1;         /* Joga a imagem na camada de trás */
+}
+
+/* Garante que o conteúdo textual e os cards fiquem na camada da frente */
+#modalidades .container {
+    position: relative;
+    z-index: 2;        /* Camada maior que a da imagem para ficar por cima */
+}
+
+/* 2. ALINHAMENTO DO CABEÇALHO (IGUAL À IMAGEM) */
+.section-header {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 3rem;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0.5rem 0;
+}
+
+.section-header span {
+    color: #aaaaaa;
+    font-size: 1.1rem;
+}
+
 .subtitulo-modalidades{
     text-align: justify;
     margin-left: 20px;
+    padding-top: 30px;
 }
 
 hr{
@@ -428,6 +467,71 @@ hr{
     background-color: var(--primary-color);
 
 }
+
+/* Grid e Cards - Modalidades */
+/* 3. CONFIGURAÇÃO DO GRID (MÁXIMO 3 POR LINHA) */
+.cards-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 1.5rem;
+    max-width: 1050px; /* Largura ideal para travar em 3 colunas no PC */
+    margin: 0 auto;
+}
+
+/* 4. CONFIGURAÇÃO DOS CARDS (CHEGA DE TRANSPARÊNCIA!) */
+.card { 
+    background-color: #111111; /* Fundo cinza escuro sólido */
+    padding: 1.8rem 1.5rem; 
+    border-bottom: 3px solid transparent; 
+    transition: all 0.3s ease;
+    
+    /* Layout flex interno para empurrar o botão para o rodapé */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    min-height: 160px; 
+}
+
+.card:hover { 
+    border-bottom-color: #ffcc00; /* Borda amarela no hover */
+    transform: translateY(-2px); /* Leve efeito de subida ao passar o mouse */
+}
+
+.card h3 {
+    color: #ffffff;
+    font-size: 1.3rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.card p {
+    color: #aaaaaa;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0 0 1.5rem 0;
+}
+
+/* 5. BOTÃO SAIBA MAIS AMARELO */
+.card a { 
+    background-color: #ffcc00; /* Fundo amarelo sólido */
+    color: #000000;            /* Texto preto obrigatório */
+    
+    display: inline-block;
+    padding: 0.4rem 1rem;      
+    border-radius: 6px;          
+    font-size: 0.85rem; 
+    font-weight: bold; 
+    text-decoration: none;       
+    
+    /* Joga o botão lá no canto inferior direito */
+    align-self: flex-end; 
+    margin-top: auto; 
+    transition: background 0.2s;
+}
+
+.card a:hover {
+    background-color: #e6b800; /* Amarelo levemente mais escuro no hover */
+}
+
 
 /* Table */
 .table-responsive { overflow-x: auto; }
