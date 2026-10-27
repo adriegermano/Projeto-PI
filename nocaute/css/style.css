@@ -33,7 +33,7 @@ ul { list-style: none; }
 
 /* Typography & Utils */
 h1, h2, h3 { font-weight: 700; }
-span { color: var(--primary-color); }
+span { color: var(--text-light); }
 .bg-dark { background-color: var(--bg-darker); }
 .section { padding: 4rem 0; }
 .section-header { text-align: center; margin-bottom: 3rem; }
@@ -54,7 +54,7 @@ span { color: var(--primary-color); }
 .btn:hover { opacity: 0.9; }
 .btn-primary { background-color: var(--primary-color); color: var(--bg-darker); }
 .btn-outline { background-color: transparent; border: 1px solid var(--border-color); color: var(--text-light); }
-.btn-black { background-color: var(--bg-darker); color: var(--primary-color); }
+.btn-black { background-color: var(--bg-darker); color: var(--text-light); }
 .btn-block { width: 100%; }
 
 /* Header */
@@ -327,12 +327,122 @@ span { color: var(--primary-color); }
 }
 
 /* Grid e Cards */
-.cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-.card { background: var(--bg-card); padding: 2rem; border-radius: 8px; border-bottom: 3px solid transparent; transition: border-color 0.3s; }
-.card:hover { border-bottom-color: var(--primary-color); }
-.card a { color: var(--primary-color); font-size: 0.9rem; font-weight: bold; }
+/* Fundo da secção com imagem e overlay escuro */
+/* Secção principal: tem de ser relative para segurar a imagem lá dentro */
+.bg-dark {
+    position: relative;
+    padding: 4rem 2rem;
+    color: #ffffff;
+    overflow: hidden; /* Evita que a imagem transborde */
+}
 
-/*QUEM SOMOS*/
+/* Faz a tag <img> cobrir toda a secção */
+.bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantém as proporções da imagem cortando os excessos */
+    z-index: 1; /* Fica na camada mais profunda */
+    filter: brightness(2.5);
+}
+
+/* Película escura sobre a imagem (substitui o linear-gradient) */
+.bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent; /* Preto com 75% de transparência */
+    z-index: 2; /* Fica à frente da imagem, mas atrás do texto */
+}
+
+/* Garante que os textos e os cartões ficam por cima da imagem e da película */
+.content-relative {
+    position: relative;
+    z-index: 3;
+}
+/* Cabeçalho - Ajuste para alinhar "Nossos Treinos" à esquerda */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.header-topo {
+    text-align: left;
+    width: 100%;
+}
+.subtitulo {
+    font-size: 0.9rem;
+    border-bottom: 3px solid #ffc107; /* Linha amarela */
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-bottom: 1.5rem;
+}
+
+/* Grid configurada para 3 colunas em ecrãs grandes */
+.cards-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 1.5rem; 
+}
+@media (min-width: 992px) {
+    .cards-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Estilo dos Cartões */
+.card { 
+    background: rgba(30, 30, 30, 0.85); /* Fundo escuro semitransparente */
+    padding: 1rem; 
+    border-radius: 8px; 
+    border: 1px solid #333; /* Borda subtil */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Cabeçalho do Cartão (Título + Ícone) */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.card-header h3 {
+    margin: 0;
+    font-size: 2.25rem;
+}
+.icon-placeholder {
+    color: #ffc107; /* Cor amarela para os ícones */
+    font-size: 1.8rem;
+    font-style: normal;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: #cccccc;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+/* Botão Amarelo alinhado à direita */
+.btn-saiba-mais-modalidades {
+    background-color: #ffc107;
+    color: #000000;
+    padding: 0.25rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-decoration: none;
+    align-self: flex-end; /* Empurra o botão para a direita */
+    transition: background-color 0.3s;
+}
+
+.btn-saiba-mais:hover {
+    background-color: #e0a800;
+}
+
 /*QUEM SOMOS*/
 #institucional {
     background-color: #FFFFFF;
@@ -341,7 +451,6 @@ span { color: var(--primary-color); }
 
 /* Limita a largura máxima do conteúdo para não espalhar em telas ultra-wide */
 #institucional .container {
-
     padding: 0 50px;
 }
 
@@ -351,6 +460,7 @@ span { color: var(--primary-color); }
     gap: 40px;                             /* Espaço maior entre as colunas */
     align-items: center;                   /* Alinha tudo verticalmente ao centro */
 }
+
 
 .institucional-text h2 {
     font-size: 2.5rem;
@@ -370,7 +480,10 @@ span { color: var(--primary-color); }
     object-fit: cover;
     border-radius: 8px;
     box-shadow: -30px 30px var(--primary-color); /* Sombra leve para destacar a imagem */
-    margin-left: 80px;
+    margin-left: 35px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 /* Estilização do bloco da direita (Missão, Visão, Valores) */
@@ -413,7 +526,7 @@ span { color: var(--primary-color); }
 }
 
 /*Modalidades*/
-.subtitulo-modalidades{
+.subtitulo{
     text-align: justify;
     margin-left: 20px;
 }
@@ -429,9 +542,12 @@ hr{
 
 }
 
-/* Table */
+/* Grade de Horários */
+.grade-horarios{
+    background-image: linear-gradient(45deg, #fafafa, #b4b4b4);
+}
 .table-responsive { overflow-x: auto; }
-.schedule-table { width: 100%; border-collapse: collapse; background: var(--bg-card); }
+.schedule-table { width: 90%; border-collapse: collapse; background: var(--text-light); color: var(--bg-dark); margin: auto;}
 .schedule-table th, .schedule-table td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--border-color); }
 .schedule-table th { color: var(--primary-color); }
 
@@ -444,7 +560,30 @@ hr{
 
 /* CTA & Footer */
 .cta-section { background-color: var(--primary-color); color: var(--bg-darker); padding: 3rem 0; }
-.cta-content { display: flex; justify-content: space-between; align-items: center; }
+.cta-content { 
+    display: flex;  
+    padding-left: 20px;
+    gap: 50px;
+}
+.mini-descricao-cta{
+    display: flex;
+    gap: 50px;
+    margin: 0px 15px 25px 10%;
+}
+
+.mini-descricao-cta p {
+    display: flex;
+    align-items: center; /* Alinha o SVG e o texto pelo meio vertical */
+    gap: 8px;            /* Cria um espaçamento agradável entre o ícone e o texto */
+    margin: 0;           /* Remove margens padrões do <p> se necessário */
+}
+
+.btn-fale-conosco{
+    display: flex;
+    justify-content: center;
+    margin-left: 25%;
+}
+
 .footer { text-align: center; padding: 2rem 0; border-top: 1px solid var(--border-color); color: var(--text-muted); }
 
 /* --- PÁGINA DE LOGIN --- */
