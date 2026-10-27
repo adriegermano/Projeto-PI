@@ -33,12 +33,13 @@ ul { list-style: none; }
 
 /* Typography & Utils */
 h1, h2, h3 { font-weight: 700; }
-span { color: var(--text-light); }
+span { color: var(--primary-color); }
 .bg-dark { background-color: var(--bg-darker); }
 .section { padding: 4rem 0; }
 .section-header { text-align: center; margin-bottom: 3rem; }
-.section-header h2 { color: var(--text-light); font-size: 2rem; }
-.section-header p { color: var(--primary-color); font-weight: bold; }
+.section-header h2 { color: var(--text-light); font-size: 3rem; }
+.section-header p { color: var(--text-light); font-weight: 450; font-size: 1.25rem;}
+
 
 /* Buttons */
 .btn {
@@ -53,7 +54,7 @@ span { color: var(--text-light); }
 }
 .btn:hover { opacity: 0.9; }
 .btn-primary { background-color: var(--primary-color); color: var(--bg-darker); }
-.btn-outline { background-color: transparent; border: 1px solid var(--border-color); color: var(--text-light); }
+.btn-outline { background-color: transparent; border: 1px solid var(--border-color); color: var(--bg-dark); }
 .btn-black { background-color: var(--bg-darker); color: var(--text-light); }
 .btn-block { width: 100%; }
 
@@ -336,6 +337,7 @@ span { color: var(--text-light); }
     overflow: hidden; /* Evita que a imagem transborde */
 }
 
+
 /* Faz a tag <img> cobrir toda a secção */
 .bg-img {
     position: absolute;
@@ -372,13 +374,6 @@ span { color: var(--text-light); }
 .header-topo {
     text-align: left;
     width: 100%;
-}
-.subtitulo {
-    font-size: 0.9rem;
-    border-bottom: 3px solid #ffc107; /* Linha amarela */
-    display: inline-block;
-    padding-bottom: 5px;
-    margin-bottom: 1.5rem;
 }
 
 /* Grid configurada para 3 colunas em ecrãs grandes */
@@ -505,8 +500,8 @@ span { color: var(--text-light); }
 
 .mvv-item h3 {
     color: #000000;
-    font-size: 1.25rem;
-    margin-top: -30px;
+    font-size: 1.5rem;
+    margin-top: -40px;
     position: absolute;
 }
 
@@ -520,7 +515,7 @@ span { color: var(--text-light); }
 .btn-saiba-mais{
     background-color: #FACC15;
     color: #000000;
-    padding: 20px 50px;
+    padding: 15px 50px;
     font-size: 20px;
     margin-top: 100px;
 }
@@ -532,7 +527,7 @@ span { color: var(--text-light); }
 }
 
 hr{
-    width: 140px;
+    width: 8rem;
     margin-left: 20px;
     height: 5px;
     border-radius: 10px;
@@ -546,6 +541,12 @@ hr{
 .grade-horarios{
     background-image: linear-gradient(45deg, #fafafa, #b4b4b4);
 }
+
+.sub-titulo-horario{
+    margin-left: 50px;
+    font-weight: 700;
+}
+
 .table-responsive { overflow-x: auto; }
 .schedule-table { width: 90%; border-collapse: collapse; background: var(--text-light); color: var(--bg-dark); margin: auto;}
 .schedule-table th, .schedule-table td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--border-color); }
@@ -557,6 +558,9 @@ hr{
 .plan-card.highlight { background: var(--primary-color); position: relative; transform: scale(1.05); }
 .plan-card .price { font-size: 2.5rem; font-weight: bold; margin: 1rem 0; }
 .plan-card ul { margin-bottom: 2rem; flex-grow: 1; text-align: left; padding-left: 1.5rem; list-style-type: disc;}
+.tipo-assinatura{
+    color: var(--bg-dark)
+}
 
 /* CTA & Footer */
 .cta-section { background-color: var(--primary-color); color: var(--bg-darker); padding: 3rem 0; }
