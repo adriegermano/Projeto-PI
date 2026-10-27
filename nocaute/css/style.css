@@ -35,7 +35,7 @@ ul { list-style: none; }
 h1, h2, h3 { font-weight: 700; }
 span { color: var(--primary-color); }
 .bg-dark { background-color: var(--bg-darker); }
-.section { padding: 4rem 0; }
+.section { padding-top: 4rem; }
 .section-header { text-align: center; margin-bottom: 3rem; }
 .section-header h2 { color: var(--text-light); font-size: 3rem; }
 .section-header p { color: var(--text-light); font-weight: 450; font-size: 1.25rem;}
@@ -53,7 +53,7 @@ span { color: var(--primary-color); }
     transition: opacity 0.3s ease;
 }
 .btn:hover { opacity: 0.9; }
-.btn-primary { background-color: var(--primary-color); color: var(--bg-darker); }
+.btn-primary { background-color: var(--primary-color); color: var(--bg-darker); margin-right: 15px; padding: 8px 25px;}
 .btn-outline { background-color: transparent; border: 1px solid var(--border-color); color: var(--bg-dark); }
 .btn-black { background-color: var(--bg-darker); color: var(--text-light); }
 .btn-block { width: 100%; }
@@ -415,7 +415,7 @@ span { color: var(--primary-color); }
 }
 
 .card p {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     color: #cccccc;
     margin-bottom: 30px;
     flex-grow: 1;
@@ -446,14 +446,14 @@ span { color: var(--primary-color); }
 
 /* Limita a largura máxima do conteúdo para não espalhar em telas ultra-wide */
 #institucional .container {
-    padding: 0 50px;
+    padding: 0px 50px 25px 50px;
 }
 
 .institucional-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 colunas idênticas */
     gap: 40px;                             /* Espaço maior entre as colunas */
-    align-items: center;                   /* Alinha tudo verticalmente ao centro */
+    align-items: center;                /* Alinha tudo verticalmente ao centro */
 }
 
 
@@ -549,17 +549,72 @@ hr{
 
 .table-responsive { overflow-x: auto; }
 .schedule-table { width: 90%; border-collapse: collapse; background: var(--text-light); color: var(--bg-dark); margin: auto;}
-.schedule-table th, .schedule-table td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--border-color); }
-.schedule-table th { color: var(--primary-color); }
+.schedule-table th, .schedule-table td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--border-color); font-weight: 500; text-align: center;}
+.schedule-table th { color: var(--primary-color); font-weight: 700;}
 
 /* Planos */
-.plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+/* 1. Configuração da Seção Base */
+.section.planos {
+    position: relative; 
+    /* Mudamos para preto puro (#000000) à direita para casar perfeitamente com o tom escuro da foto */
+    background: linear-gradient(to right, #4B4B4B 0%, #1a1a1a 45%, #000000 70%, #000000 100%); 
+    padding: 60px 0;
+    isolation: isolate; 
+    overflow: hidden; /* Evita que a imagem vaze ou crie barras de rolagem */
+}
+
+/* 2. Suavização da Imagem (O degradê que une o fundo com a foto) */
+.section.planos::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Esse degradê cria uma transição suave, eliminando o corte seco da imagem */
+    background: linear-gradient(to right, transparent 50%, rgba(0, 0, 0, 0.5) 70%, transparent 95%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* 3. Posicionando a Imagem de Ponta a Ponta */
+.section.planos img {
+    position: absolute;
+    right: 0; 
+    top: 0; /* Alinha pelo topo */
+    bottom: 0; /* Alinha pela base simultaneamente */
+    height: 100% !important; /* Força a imagem a ocupar 100% da altura total da seção */
+    width: auto; 
+    object-fit: cover; 
+    z-index: -2; 
+    
+    /* Aplica uma opacidade e um filtro de mistura para fundir a foto com o fundo escuro */
+    opacity: 0.75;
+    mix-blend-mode: luminosity; 
+}
+
+/* 4. Garantindo que o Container fique visível por cima */
+.section.planos .container {
+    position: relative;
+}
+
+
+.plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 20px;}
 .plan-card { background: var(--text-light); color: var(--bg-darker); padding: 2rem; border-radius: 8px; text-align: center; display: flex; flex-direction: column; }
 .plan-card.highlight { background: var(--primary-color); position: relative; transform: scale(1.05); }
 .plan-card .price { font-size: 2.5rem; font-weight: bold; margin: 1rem 0; }
 .plan-card ul { margin-bottom: 2rem; flex-grow: 1; text-align: left; padding-left: 1.5rem; list-style-type: disc;}
+.plan-card h3{
+    font-weight: 800;
+}
 .tipo-assinatura{
-    color: var(--bg-dark)
+    color: var(--bg-darker);
+}
+.badge{
+    font-size: 12px;
+}
+.btn-assine{
+    font-size: 18px;
 }
 
 /* CTA & Footer */
@@ -588,7 +643,10 @@ hr{
     margin-left: 25%;
 }
 
-.footer { text-align: center; padding: 2rem 0; border-top: 1px solid var(--border-color); color: var(--text-muted); }
+.footer { text-align: center; padding: 0.5rem 0; border-top: 1px solid var(--border-color); color: var(--text-muted); display: flex;}
+.icone{
+    width: 50px;
+}
 
 /* --- PÁGINA DE LOGIN --- */
 .login-body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: var(--bg-darker); }
