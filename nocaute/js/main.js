@@ -1,144 +1,115 @@
-// --- FUNCIONALIDADES DE LOGIN ---
 
-// Alternar abas no Login
-function switchTab(type) {
-    const tabs = document.querySelectorAll('.tab-btn');
-    const btnSubmit = document.querySelector('.login-form button[type="submit"]');
-    
-    tabs.forEach(tab => tab.classList.remove('active'));
-    
-    if(type === 'aluno') {
-        tabs[0].classList.add('active');
-        btnSubmit.textContent = 'Entrar como aluno';
-        // Adicionamos um atributo para identificar o tipo de login no submit
-        btnSubmit.setAttribute('data-type', 'aluno'); 
-    } else {
-        tabs[1].classList.add('active');
-        btnSubmit.textContent = 'Entrar como instrutor';
-        btnSubmit.setAttribute('data-type', 'instrutor');
-    }
-}
+/* ==========================================
+   CARROSSEL PRINCIPAL
+   CT FABIANO MINEIRO - NOCAUTE
+   ========================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-    const carousel = document.getElementById("heroCarousel");
-    if (!carousel) return;
+    const carousel = document.querySelector("#heroCarousel");
 
+    // Verifica se o carrossel existe na página
+    if (!carousel) return;
 
     const slides = Array.from(
         carousel.querySelectorAll(".hero-slide")
     );
 
-
     const dots = Array.from(
         carousel.querySelectorAll(".hero-dot")
     );
 
-
     const previousButton = carousel.querySelector(".hero-prev");
     const nextButton = carousel.querySelector(".hero-next");
 
+    // Não continua se não houver imagens
+    if (slides.length === 0) return;
 
-    if (slides.length < 2) return;
-
-
-    let currentIndex = 0;
-    let autoplayId = null;
-
-
-    const autoplayDelay = 6000;
-
-
-    const reducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    );
-
-
-    // Usa a própria foto como fundo desfocado
+    // Define a imagem de fundo desfocada de cada slide
     slides.forEach((slide) => {
         const img = slide.querySelector("img");
 
+        if (!img) return;
 
-        if (img) {
-            slide.style.setProperty(
-                "--slide-background",
-                url("${img.getAttribute("src")}")center / cover no-repeat
-            );
-        }
+        const imageUrl = img.getAttribute("src");
+
+        slide.style.setProperty(
+            "--slide-background",
+            `url("${imageUrl}") center / cover no-repeat`
+        );
     });
 
+    // Identifica o slide inicialmente ativo
+    let currentIndex = slides.findIndex((slide) =>
+        slide.classList.contains("active")
+    );
 
-    // Exibe a imagem escolhida
+    if (currentIndex < 0) {
+        currentIndex = 0;
+    }
+
+    let autoplayId = null;
+    const autoplayDelay = 6000;
+
+    const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    // Exibe o slide escolhido e atualiza os indicadores
     function showSlide(index) {
         currentIndex = (index + slides.length) % slides.length;
-
 
         slides.forEach((slide, i) => {
             const isActive = i === currentIndex;
 
-
             slide.classList.toggle("active", isActive);
-
-
-            slide.setAttribute(
-                "aria-hidden",
-                String(!isActive)
-            );
+            slide.setAttribute("aria-hidden", String(!isActive));
         });
-
 
         dots.forEach((dot, i) => {
             const isActive = i === currentIndex;
 
-
             dot.classList.toggle("active", isActive);
-
-
-            dot.setAttribute(
-                "aria-current",
-                String(isActive)
-            );
+            dot.setAttribute("aria-current", String(isActive));
         });
     }
 
+    // Avança para a próxima imagem
+    function nextSlide() {
+        showSlide(currentIndex + 1);
+    }
 
-    // Para a reprodução automática
+    // Volta para a imagem anterior
+    function previousSlide() {
+        showSlide(currentIndex - 1);
+    }
+
+    // Interrompe a troca automática
     function stopAutoplay() {
         if (autoplayId !== null) {
-            window.clearInterval(autoplayId);
+            clearInterval(autoplayId);
             autoplayId = null;
         }
     }
 
-
-    // Avança automaticamente a cada 6 segundos
+    // Inicia a troca automática a cada 6 segundos
     function startAutoplay() {
         stopAutoplay();
 
-
-        if (!reducedMotion.matches) {
-            autoplayId = window.setInterval(
-                () => showSlide(currentIndex + 1),
-                autoplayDelay
-            );
+        if (
+            reducedMotion ||
+            slides.length < 2 ||
+            document.hidden
+        ) {
+            return;
         }
+
+        autoplayId = setInterval(
+            nextSlide,
+            autoplayDelay
+        );
     }
 
-
-    // Botão de imagem anterior
-    previousButton?.addEventListener("click", () => {
-        showSlide(currentIndex - 1);
-        startAutoplay();
-    });
-
-
-    // Botão de próxima imagem
-    nextButton?.addEventListener("click", () => {
-        showSlide(currentIndex + 1);
-        startAutoplay();
-    });
-
-
-    // Clique nos indicadores
+    // Permite selecionar uma imagem pelos indicadores
     dots.forEach((dot, index) => {
         dot.addEventListener("click", () => {
             showSlide(index);
@@ -146,15 +117,28 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // Botão de avançar
+    if (nextButton) {
+        nextButton.addEventListener("click", () => {
+            nextSlide();
+            startAutoplay();
+        });
+    }
 
-    // Pausa quando o mouse está sobre o carrossel
+    // Botão de voltar
+    if (previousButton) {
+        previousButton.addEventListener("click", () => {
+            previousSlide();
+            startAutoplay();
+        });
+    }
+
+    // Pausa o carrossel quando o mouse estiver sobre ele
     carousel.addEventListener("mouseenter", stopAutoplay);
     carousel.addEventListener("mouseleave", startAutoplay);
 
-
-    // Pausa durante a navegação por teclado
+    // Pausa enquanto o usuário navega pelos controles
     carousel.addEventListener("focusin", stopAutoplay);
-
 
     carousel.addEventListener("focusout", (event) => {
         if (!carousel.contains(event.relatedTarget)) {
@@ -162,8 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-
-    // Pausa quando a página fica oculta
+    // Pausa quando a aba do navegador fica oculta
     document.addEventListener("visibilitychange", () => {
         if (document.hidden) {
             stopAutoplay();
@@ -172,36 +155,76 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-
-    // Respeita mudanças na preferência de movimento
-    reducedMotion.addEventListener?.("change", startAutoplay);
-
-
-    // Inicializa na primeira imagem
-    showSlide(0);
+    // Inicializa o carrossel
+    showSlide(currentIndex);
     startAutoplay();
 });
 
-// Simulação de Submissão de Formulário (Login)
-const loginForm = document.getElementById('loginForm');
-if (loginForm) {
-    loginForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // Evita recarregamento da página
-        const email = document.getElementById('email').value;
-        const senha = document.getElementById('senha').value;
 
-        if (email && senha) {
-            // Verifica qual aba está ativa verificando o atributo que criamos
-            const btnSubmit = document.querySelector('.login-form button[type="submit"]');
-            const loginType = btnSubmit.getAttribute('data-type') || 'aluno';
+/* ==========================================
+   ALTERNÂNCIA DAS ABAS DE LOGIN
+   ========================================== */
 
-            if (loginType === 'aluno') {
-                // Redireciona para o Dashboard do Aluno
-                window.location.href = 'aluno.html';
-            } else if (loginType === 'instrutor') {
-                // Redireciona para o Dashboard do Instrutor
-                window.location.href = 'instrutor.html';
-            }
+function switchTab(type) {
+    const tabs = document.querySelectorAll(".tab-btn");
+    const submitButton = document.querySelector(
+        '.login-form button[type="submit"]'
+    );
+
+    tabs.forEach((tab) => {
+        const isActive = tab.dataset.type === type;
+
+        tab.classList.toggle("active", isActive);
+        tab.setAttribute("aria-selected", String(isActive));
+    });
+
+    if (submitButton) {
+        submitButton.textContent =
+            type === "aluno"
+                ? "Entrar como Aluno"
+                : "Entrar como Instrutor";
+
+        submitButton.dataset.type = type;
+    }
+}
+
+
+/* ==========================================
+   FORMULÁRIO DE LOGIN
+   ========================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.querySelector("#loginForm");
+
+    if (!loginForm) return;
+
+    loginForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const emailInput = document.querySelector("#email");
+        const passwordInput = document.querySelector("#senha");
+
+        if (!emailInput || !passwordInput) return;
+
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+
+        if (!email || !password) {
+            alert("Preencha o e-mail e a senha.");
+            return;
+        }
+
+        const submitButton = loginForm.querySelector(
+            'button[type="submit"]'
+        );
+
+        const type = submitButton?.dataset.type || "aluno";
+
+        // Demonstração: não valida credenciais no servidor.
+        if (type === "instrutor") {
+            window.location.href = "instrutor.html";
+        } else {
+            window.location.href = "aluno.html";
         }
     });
-}
+});

@@ -13,9 +13,9 @@
             <p>CENTRO DE TREINAMENTO</p>
         </div>
         
-        <div class="login-tabs">
-            <button class="tab-btn active" onclick="switchTab('aluno')">Aluno</button>
-            <button class="tab-btn" onclick="switchTab('instrutor')">Instrutor</button>
+        <div class="login-tabs" aria-label="Tipo de login">
+            <button class="tab-btn active" type="button" data-type="aluno" onclick="switchTab('aluno')">Aluno</button>
+            <button class="tab-btn" type="button" data-type="instrutor" onclick="switchTab('instrutor')">Instrutor</button>
         </div>
 
         <form id="loginForm" class="login-form">

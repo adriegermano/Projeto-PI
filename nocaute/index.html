@@ -27,7 +27,8 @@
     <main>
         <!-- Hero com carrossel de imagens -->
         <section class="hero" aria-label="Destaques do centro de treinamento">
-            <div class="hero-carousel" id="heroCarousel">
+            <div class="hero-carousel" id="heroCarousel"
+                aria-label="Carrossel de imagens: kickboxing, boxe e musculação">
 
 
                 <!-- Imagem 1: Kickboxing -->
@@ -40,6 +41,12 @@
                 <!-- Imagem 2: Boxe -->
                 <div class="hero-slide" aria-hidden="true">
                     <img src="img/boxe.png" alt="Atleta treinando boxe e golpeando um saco de pancadas" loading="lazy">
+                </div>
+
+
+                <!-- Imagem 3: Musculação -->
+                <div class="hero-slide" aria-hidden="true">
+                    <img src="img/musculação.png" alt="Atleta levantando peso" loading="lazy">
                 </div>
 
 
@@ -90,6 +97,9 @@
 
 
                     <button class="hero-dot" type="button" aria-label="Mostrar foto 2: Boxe"
+                        aria-current="false"></button>
+
+                    <button class="hero-dot" type="button" aria-label="Mostrar foto 3: Musculação"
                         aria-current="false"></button>
                 </div>
 
@@ -411,7 +421,7 @@
                             <li>Sparring Supervisionado</li>
                         </ul>
                         <button class="btn btn-black btn-assine">ASSINAR</button>
-                        
+
                     </div>
                     <div class="plan-card">
                         <h3>PERSONAL</h3>
@@ -483,6 +493,7 @@
             <p>&copy; 2026 noCauTe - Centro de Treinamento. Todos os direitos reservados.</p>
         </div>
     </footer>
+    <script src="js/main.js" defer></script>
 </body>
 
 </html>
