@@ -25,6 +25,11 @@
     background-color: #5B5856;
     display: block;
     padding-left: 20px;
+    padding-bottom: 8px;
+}
+
+.name-academia{
+    font-size: 10px;
 }
 
 .sidebar-header .logo { color: var(--text-light); margin-bottom: 0.5rem; }
