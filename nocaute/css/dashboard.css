@@ -104,7 +104,7 @@
 .view-section.active { display: block; margin-right: 1.3vw}
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-/*INÍCIO: Bem-vindo Aluno*/
+/*ABA INÍCIO: Bem-vindo Aluno*/
 .view-header { 
     margin: 1rem 0;
     color: var(--bg-darker)
@@ -154,7 +154,7 @@
     margin-bottom: 0; 
 }
 
-/*INÍCIO: Minhas próximas aulas / Grades dos próximos dias*/
+/*ABA INÍCIO: Minhas próximas aulas / Grades dos próximos dias*/
 .dashboard-panels { 
     display: grid; 
     grid-template-columns: 1fr 1fr; 
@@ -173,39 +173,159 @@
     padding-bottom: 0.5rem; 
     color: var(--bg-darker);
 }
-.empty-state { 
-    text-align: center; 
-    padding: 2rem 0; 
-    color: var(--text-muted); 
-}
-.empty-state button { margin-top: 1rem; }
 
-/*INÍCIO: Listas e Grades */
+
+/*ABA INÍCIO: Listas e Grades */
 .grade-list { list-style: none; }
 .grade-day { color: var(--primary-color); font-weight: bold; margin: 1.5rem 0 0.5rem 0; font-size: 0.9rem; }
 .grade-item { padding: 0.8rem 0; border-bottom: 1px solid var(--text-muted); font-size: 0.9rem; color: var(--bg-darker)}
 .grade-item strong { margin-right: 0.5rem; }
 
-/*AULAS & HORÁRIOS: Agendamento / Horários */
-.date-selector, .filters { display: flex; gap: 1rem; margin-bottom: 2rem; overflow-x: auto; padding-bottom: 0.5rem; }
-.date-btn { background: var(--bg-card); color: var(--text-light); border: 1px solid var(--border-color); padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; text-align: center; font-weight: bold; min-width: 80px; }
+/*ABA AULAS & HORÁRIOS: Agendamento / Horários */
+/**/
+.date-selector, .filters { 
+    display: flex; 
+    gap: 1rem; 
+    margin-bottom: 2rem; 
+    overflow-x: auto; 
+    padding-bottom: 0.5rem; 
+}
+.date-btn { 
+    background-color: #FFFFFF; 
+    color: var(--text-muted); 
+    border: 1px solid #E2E3E3;  
+    padding: 0.8rem 1.5rem; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    text-align: center; 
+    min-width: 80px; 
+}
+.date-btn h5{
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+.date-btn p{
+    font-size: 14px;
+    font-weight: 600;
+}
+
 .date-btn.active { background: var(--primary-color); color: var(--bg-darker); border-color: var(--primary-color); }
-.filter-btn { background: transparent; border: 1px solid var(--text-muted); color: var(--text-muted); padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; }
-.filter-btn.active { border-color: var(--primary-color); color: var(--primary-color); }
 
-.day-title { margin-bottom: 1.5rem; color: var(--primary-color); }
-.classes-list { display: flex; flex-direction: column; gap: 1rem; }
-.class-card { background: var(--bg-card); padding: 1.5rem; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
-.class-time { font-size: 1.5rem; font-weight: bold; text-align: center; color: var(--primary-color); min-width: 80px; }
-.class-time span { display: block; font-size: 0.8rem; color: var(--text-muted); font-weight: normal; }
-.class-info { flex-grow: 1; }
-.class-tags { font-size: 0.8rem; color: var(--primary-color); margin: 0.3rem 0; font-weight: 600; }
-.class-details { font-size: 0.85rem; color: var(--text-muted); }
+/*Modalidades*/
+.filters{
+    margin-bottom: 15px;
+}
+.filter-btn { 
+    background-color: #FFFFFF; 
+    border: 1px solid var(--text-muted); 
+    color: var(--text-muted); 
+    padding: 0.5rem 1rem; 
+    border-radius: 20px; 
+    cursor: pointer; 
+    font-weight: 600;
+}
+.filter-btn.active { 
+    border-color: var(--primary-color); 
+    color: var(--primary-color);
+}
 
-/* Tabelas (Presenças / Faturas) */
-.data-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 8px; overflow: hidden; }
-.data-table th, .data-table td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--border-color); }
-.data-table th { color: var(--text-muted); font-size: 0.85rem; background: rgba(0,0,0,0.2); }
+/*Título do Dia*/
+.day-title { 
+    margin-bottom: 1rem; 
+    color: var(--bg-darker);
+    font-weight: 500; 
+}
+
+/*Horários do Dia*/
+.classes-list { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1rem;
+    margin-bottom: 15px; 
+}
+.class-card { 
+    background-color: #FFFFFF;
+    border: 1px solid #E2E3E3;
+    padding: 1.5rem; 
+    border-radius: 8px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    gap: 1.5rem;
+}
+.class-time { 
+    font-size: 2rem; 
+    font-weight: bold; 
+    text-align: center; 
+    color: var(--primary-color); 
+    min-width: 80px; 
+}
+.class-time span { 
+    display: block; 
+    font-size: 0.8rem; 
+    color: var(--text-muted); 
+    font-weight: normal; 
+}
+.class-info { 
+    flex-grow: 1;
+    color: var(--bg-darker);
+    font-size: 20px;
+}
+
+.class-tags { 
+    font-size: 1rem; 
+    margin-bottom: 0.3rem; 
+    font-weight: 400; 
+}
+.class-details { 
+    font-size: 0.85rem; 
+    color: var(--text-muted);
+}
+
+.class-details img { 
+    width: 15px;
+}
+
+/*ABA Minha Agenda*/
+.empty-state { 
+    text-align: center;
+    padding: 2rem 0; 
+    color: var(--text-muted); 
+    border: 1px solid #E2E3E3;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+}
+.empty-state img{
+    width: 30px;
+    margin-left: -15px;
+}
+.empty-state button { 
+    margin-top: 1rem; 
+}
+
+/*ABA Minhas Presenças:  Tabelas (Presenças / Faturas) */
+.table-responsive{
+    border: 1px solid #E2E3E3;
+    border-radius: 10px;
+
+}
+.data-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    background: var(--bg-card); 
+
+    overflow: hidden; 
+    background-color: #FFFFFF;
+    color: var(--bg-darker);
+}
+.data-table th, .data-table td { 
+    padding: 1rem; 
+    text-align: left; 
+    border-bottom: 1px solid var(--border-color); 
+    text-align: center;
+}
+.data-table th { color: var(--text-muted); font-size: 0.85rem; }
 .status-presente { color: #4ade80; }
 .status-falta { color: #f87171; }
 .mt-2 { margin-top: 3rem; margin-bottom: 1.5rem; }
