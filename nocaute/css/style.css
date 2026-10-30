@@ -178,9 +178,8 @@ span {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    font-style: italic;
+    width: 130px;
+    
 }
 
 .nav-list {

@@ -16,8 +16,10 @@
 }
 
 .sidebar-header {
-    padding: 0.9rem;
-    border-bottom: 1px solid var(--border-color);
+    padding: 20px 0 4px 0;
+    border-bottom: 2px solid var(--border-color);
+    box-shadow: 10px 0 100px #000;
+    background-color: #393735;
 }
 
 
@@ -35,20 +37,36 @@
 .nav-item {
     background: none;
     border: none;
-    color: var(--text-muted);
+    color: var(--text-light);
     padding: 1rem 1.5rem;
     text-align: left;
-    font-size: 0.8rem;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
     width: 100%;
+    display: flex; 
+    align-items: center;
+    gap: 5px;
 }
-.nav-item:hover { color: var(--text-light); background-color: rgba(255,255,255,0.05); border-left: 4px solid transparent; }
-.nav-item.active { color: var(--primary-color); border-left: 4px solid var(--primary-color); background-color: rgba(250, 204, 21, 0.1); }
+.nav-item:hover { 
+    color: var(--text-light); 
+    background-color: rgba(255,255,255,0.05); 
+}
+.nav-item.active {  
+    background-color: #E1A700; 
+    display: flex; 
+    align-items: center;
+    border-radius: 10px;
+}
+.icon-sidebar{
+    width: 20px;
+    margin-top: -3px;
+}
 
-.sidebar-footer { padding: 1.5rem; border-top: 1px solid var(--border-color); }
-.btn-logout { color: #ff4d4d; border-left: none !important; }
+.sidebar-footer {
+    border-top: 1px solid var(--border-color); 
+}
 
 /*Informações do Cabeçalho*/
 .cabecalho{
@@ -60,7 +78,7 @@
 
 .info-cabecalho{
     display: flex;
-    gap: 71vw;
+    gap: 70.5vw;
     align-items: center;
 }
 
@@ -86,31 +104,89 @@
 .view-section.active { display: block; margin-right: 1.3vw}
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-/*Bem-vindo Aluno*/
-.view-header { margin: 1rem 0 1.5rem 0; }
-.view-header h1 { font-size: 1rem; color: black; font-weight: 400;}
-.view-header span { font-size: 1.8rem; color: var(--bg-darker); font-weight: 800;}
+/*INÍCIO: Bem-vindo Aluno*/
+.view-header { 
+    margin: 1rem 0;
+    color: var(--bg-darker)
+}
+.view-header p { 
+    font-size: 16px; 
+    font-weight: 400;
+    margin-bottom: -8px;
+    color: #5B5856;
+}
+.view-header h3 { 
+    font-size: 1.8rem;  
+    font-weight: 800; 
+    margin-top: 0;
+}
 
 /* Estatísticas */
-.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;}
-.stat-card { background-color: #FFFFFF; padding: 1rem 1.5rem; border-radius: 8px; border-left: 3px solid var(--primary-color); color: var(--bg-darker)}
-.stat-title { font-size: 0.8rem; color: var(--text-muted); font-weight: bold; margin-bottom: 0.5rem; }
-.stat-card h3 { font-size: 1.8rem; margin-bottom: 0.2rem;}
+.stats-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 1.5rem; 
+    margin-bottom: 2rem;
+}
+.stat-card { 
+    background-color: #FFFFFF; 
+    padding: 1rem 1.5rem; 
+    border-radius: 8px; 
+    border: 1px solid #E2E3E3; 
+    border-left: 3px solid var(--primary-color); 
+    color: var(--bg-darker);
+}
+.stat-title { 
+    font-size: 0.8rem; 
+    color: var(--text-muted); 
+    font-weight: 600; 
+    margin-bottom: 0; 
+}
+.stat-card h3 { 
+    font-size: 1.8rem; 
+    margin-bottom: 0.2rem;
+}
 
-/* Painéis */
-.dashboard-panels { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-.panel { background-color: var(--bg-card); padding: 2rem; border-radius: 8px; }
-.panel h3 { margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
-.empty-state { text-align: center; padding: 2rem 0; color: var(--text-muted); }
+.stat-subtitle { 
+    font-size: 0.8rem; 
+    color: var(--text-muted); 
+    font-weight: 500; 
+    margin-bottom: 0; 
+}
+
+/*INÍCIO: Minhas próximas aulas / Grades dos próximos dias*/
+.dashboard-panels { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 2rem; 
+}
+.panel { 
+    background-color: #FFFFFF; 
+    padding: 2rem; 
+    border-radius: 8px; 
+    border: 1px solid #E2E3E3; 
+    margin-bottom: 15px;
+}
+.panel h3 { 
+    margin-bottom: 1.5rem; 
+    border-bottom: 1px solid var(--text-muted); 
+    padding-bottom: 0.5rem; 
+    color: var(--bg-darker);
+}
+.empty-state { 
+    text-align: center; 
+    padding: 2rem 0; 
+    color: var(--text-muted); 
+}
 .empty-state button { margin-top: 1rem; }
 
-/* Listas e Grades */
+/*INÍCIO: Listas e Grades */
 .grade-list { list-style: none; }
 .grade-day { color: var(--primary-color); font-weight: bold; margin: 1.5rem 0 0.5rem 0; font-size: 0.9rem; }
-.grade-item { padding: 0.8rem 0; border-bottom: 1px solid var(--border-color); font-size: 0.9rem; }
-.grade-item strong { color: var(--text-light); margin-right: 0.5rem; }
+.grade-item { padding: 0.8rem 0; border-bottom: 1px solid var(--text-muted); font-size: 0.9rem; color: var(--bg-darker)}
+.grade-item strong { margin-right: 0.5rem; }
 
-/* Agendamento / Horários */
+/*AULAS & HORÁRIOS: Agendamento / Horários */
 .date-selector, .filters { display: flex; gap: 1rem; margin-bottom: 2rem; overflow-x: auto; padding-bottom: 0.5rem; }
 .date-btn { background: var(--bg-card); color: var(--text-light); border: 1px solid var(--border-color); padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; text-align: center; font-weight: bold; min-width: 80px; }
 .date-btn.active { background: var(--primary-color); color: var(--bg-darker); border-color: var(--primary-color); }

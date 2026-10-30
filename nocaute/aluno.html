@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Área do Aluno - noCauTe</title>
+    <title>noCauTe - Centro de Treinamento</title>
     <!-- Reaproveitamos as variáveis globais -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/dashboard.css">
@@ -16,18 +16,36 @@
     <aside class="sidebar" id="sidebar">
         <div>
             <div class="sidebar-header">
-                <h2 class="logo">noCauTe</h2>
+                <img src="img/logo-nocaute.png" alt="" class="logo">
             </div>
         </div>
         <nav class="sidebar-nav">
-            <button class="nav-item active" data-target="view-inicio">Início</button>
-            <button class="nav-item" data-target="view-horarios">Aulas & Horários</button>
-            <button class="nav-item" data-target="view-agenda">Minha Agenda</button>
-            <button class="nav-item" data-target="view-presencas">Minhas Presenças</button>
-            <button class="nav-item" data-target="view-plano">Meu Plano</button>
+            <button class="nav-item active" data-target="view-inicio">
+                <img src="img/svg/icon-inicio.png" alt="" class="icon-sidebar" style="margin-top: 0.1px">
+                Início
+            </button>
+            <button class="nav-item" data-target="view-horarios">
+                <img src="img/svg/icon-aulas.png" alt="" class="icon-sidebar">
+                Aulas & Horários
+            </button>
+            <button class="nav-item" data-target="view-agenda">
+                <img src="img/svg/icon-agenda.png" alt="" class="icon-sidebar">
+                Minha Agenda
+            </button>
+            <button class="nav-item" data-target="view-presencas">
+                <img src="img/svg/icon-presenca.png" alt="" class="icon-sidebar">
+                Minhas Presenças
+            </button>
+            <button class="nav-item" data-target="view-plano">
+                <img src="img/svg/icon-plano.png" alt="" class="icon-sidebar">
+                Meu Plano
+            </button>
         </nav>
         <div class="sidebar-footer">
-            <a href="login.html" class="nav-item btn-logout">Sair</a>
+            <a href="login.html" class="nav-item btn-logout">
+                <img src="img/svg/icon-sair.png" alt="" class="icon-sidebar">
+                Sair
+            </a>
         </div>
     </aside>
 
@@ -49,7 +67,8 @@
         <!-- VISÃO: INÍCIO -->
         <section id="view-inicio" class="view-section active">
             <header class="view-header">
-                <h1>Bem-vindo(a), <br><span>Ana Beatriz Lima</span></h1>
+                <p>Bem-vindo(a), </p>
+                <h3>Ana Beatriz Lima</h3>
             </header>
 
             <div class="stats-grid">
