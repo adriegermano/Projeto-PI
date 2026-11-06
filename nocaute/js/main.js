@@ -1,4 +1,3 @@
-
 /* ==========================================
    CARROSSEL PRINCIPAL
    CT FABIANO MINEIRO - NOCAUTE
@@ -190,23 +189,17 @@ function switchTab(type) {
 
 
 /* ==========================================
-   FORMULÁRIO DE LOGIN E CADASTRO
+   FORMULÁRIO DE LOGIN
    ========================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
     // Elementos de perfil
     const profileButtons = document.querySelectorAll('.profile-tabs .tab-btn');
 
-    // Botões de navegação dos formulários
-    const btnGoToRegister = document.getElementById('btnGoToRegister');
-    const btnGoToLogin = document.getElementById('btnGoToLogin');
-
     // Formulários e campos
     const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
     const emailInput = document.getElementById('email');
     const btnSubmitLogin = document.getElementById('btnSubmitLogin');
-    const btnSubmitRegister = document.getElementById('btnSubmitRegister');
 
     // Variável que guarda o perfil selecionado
     let currentProfile = 'aluno';
@@ -242,11 +235,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentProfile === 'aluno') {
                 if (emailInput) emailInput.placeholder = 'aluno@nocaute.com';
                 if (btnSubmitLogin) btnSubmitLogin.textContent = 'Entrar como aluno';
-                if (btnSubmitRegister) btnSubmitRegister.textContent = 'Criar conta como aluno';
             } else {
                 if (emailInput) emailInput.placeholder = 'instrutor@nocaute.com';
                 if (btnSubmitLogin) btnSubmitLogin.textContent = 'Entrar como instrutor';
-                if (btnSubmitRegister) btnSubmitRegister.textContent = 'Criar conta como instrutor';
             }
         });
     });
@@ -273,39 +264,6 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 window.location.href = "aluno.html";
             }
-        });
-    }
-
-    // 3. Submissão do Formulário de Cadastro (Redirecionamento)
-    if (registerForm) {
-        registerForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-
-            const registerEmail = document.getElementById('reg-email')?.value.trim();
-            if (!registerEmail) return;
-            storeUserSession(registerEmail);
-
-            if (currentProfile === "instrutor") {
-                window.location.href = "instrutor.html";
-            } else {
-                window.location.href = "aluno.html";
-            }
-        });
-    }
-
-    // 4. Alternar para formulário de Cadastro
-    if (btnGoToRegister) {
-        btnGoToRegister.addEventListener('click', () => {
-            if (loginForm) loginForm.style.display = 'none';
-            if (registerForm) registerForm.style.display = 'block';
-        });
-    }
-
-    // 5. Alternar de volta para formulário de Login
-    if (btnGoToLogin) {
-        btnGoToLogin.addEventListener('click', () => {
-            if (registerForm) registerForm.style.display = 'none';
-            if (loginForm) loginForm.style.display = 'block';
         });
     }
 });
